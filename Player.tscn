@@ -1,0 +1,91 @@
+[gd_scene load_steps=14 format=3 uid="uid://dy1b4vp7ii743"]
+
+[ext_resource type="Texture2D" uid="uid://1m25gnib48df" path="res://assets/ball/ball-down.png" id="1_ctk1x"]
+[ext_resource type="Script" path="res://Player.cs" id="1_i4c40"]
+[ext_resource type="Texture2D" uid="uid://q2gg4hkayju" path="res://assets/ball/ball-idle.png" id="2_uxcvy"]
+[ext_resource type="Texture2D" uid="uid://smrtuus4l6vn" path="res://assets/ball/ball-left.png" id="3_5dr2a"]
+[ext_resource type="Texture2D" uid="uid://cphv1v73ywwl" path="res://assets/ball/ball-right.png" id="4_tydwx"]
+[ext_resource type="Texture2D" uid="uid://cr8vep8m4eagj" path="res://assets/ball/ball-up.png" id="5_qu717"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oyhja"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ctk1x")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_uxcvy")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5dr2a")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_tydwx")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_qu717")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t5cqf"]
+radius = 22.0907
+
+[sub_resource type="Gradient" id="Gradient_52ydb"]
+colors = PackedColorArray(1, 1, 1, 0.501961, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sxbj6"]
+gradient = SubResource("Gradient_52ydb")
+
+[sub_resource type="Curve" id="Curve_7eoa2"]
+_data = [Vector2(0, 0.494737), 0.0, 0.0, 0, 0, Vector2(1, 0.315789), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_scm20"]
+curve = SubResource("Curve_7eoa2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i1ug5"]
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_scm20")
+color_ramp = SubResource("GradientTexture1D_sxbj6")
+
+[node name="Player" type="Area2D"]
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_i4c40")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oyhja")
+animation = &"up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_t5cqf")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_i1ug5")
+texture = ExtResource("1_ctk1x")
+speed_scale = 2.0
