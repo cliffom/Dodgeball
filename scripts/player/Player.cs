@@ -32,11 +32,6 @@ public partial class Player : Area2D
         if (velocity.Length() > 0)
         {
             velocity = velocity.Normalized() * Speed;
-            //animatedSprite2D.Play();
-        }
-        else
-        {
-            //animatedSprite2D.Stop();
         }
 
         // Clamp the position to the screen boundaries
