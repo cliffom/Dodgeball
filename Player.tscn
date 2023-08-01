@@ -1,11 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://dy1b4vp7ii743"]
+[gd_scene load_steps=13 format=3 uid="uid://dy1b4vp7ii743"]
 
 [ext_resource type="Script" path="res://scripts/player/Player.cs" id="1_1bsq3"]
 [ext_resource type="Texture2D" uid="uid://1m25gnib48df" path="res://assets/ball/ball-down.png" id="1_ctk1x"]
-[ext_resource type="Texture2D" uid="uid://q2gg4hkayju" path="res://assets/ball/ball-idle.png" id="2_uxcvy"]
+[ext_resource type="Texture2D" uid="uid://db0lm21b32uxq" path="res://assets/ball/ball-idle-1.png" id="3_1nc3i"]
 [ext_resource type="Texture2D" uid="uid://smrtuus4l6vn" path="res://assets/ball/ball-left.png" id="3_5dr2a"]
+[ext_resource type="Texture2D" uid="uid://blivkinbdccyn" path="res://assets/ball/ball-idle-2.png" id="4_ndndj"]
 [ext_resource type="Texture2D" uid="uid://cphv1v73ywwl" path="res://assets/ball/ball-right.png" id="4_tydwx"]
 [ext_resource type="Texture2D" uid="uid://cr8vep8m4eagj" path="res://assets/ball/ball-up.png" id="5_qu717"]
+[ext_resource type="Texture2D" uid="uid://br8sl1wuinv65" path="res://assets/ball/ball-idle-3.png" id="5_x2qe4"]
+[ext_resource type="Texture2D" uid="uid://6paqcquf2l6k" path="res://assets/ball/ball-idle-4.png" id="6_n2bpe"]
+[ext_resource type="Texture2D" uid="uid://dell8kgpqajex" path="res://assets/ball/ball-idle-5.png" id="7_gqnkv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_oyhja"]
 animations = [{
@@ -19,7 +23,19 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_uxcvy")
+"texture": ExtResource("3_1nc3i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ndndj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_x2qe4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_n2bpe")
+}, {
+"duration": 10.0,
+"texture": ExtResource("7_gqnkv")
 }],
 "loop": true,
 "name": &"idle",
@@ -60,7 +76,7 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_oyhja")
-animation = &"up"
+animation = &"down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_t5cqf")
