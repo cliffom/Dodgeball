@@ -88,7 +88,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_t5cqf"]
-radius = 22.0907
+radius = 33.36
 
 [node name="Player" type="Area2D"]
 scale = Vector2(0.75, 0.75)
@@ -101,3 +101,5 @@ animation = &"down"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_t5cqf")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

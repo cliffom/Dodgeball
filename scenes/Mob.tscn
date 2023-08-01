@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4vskmqq1248x"]
+
+[ext_resource type="Texture2D" uid="uid://bsottv6vb2utt" path="res://assets/red-ball/red-ball.png" id="1_8ru3q"]
+[ext_resource type="Script" path="res://scripts/mob/Mob.cs" id="1_njreg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vgbir"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8ru3q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dv653"]
+radius = 16.0
+
+[node name="Mob" type="RigidBody2D"]
+collision_mask = 0
+gravity_scale = 2.66454e-15
+script = ExtResource("1_njreg")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vgbir")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dv653")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
