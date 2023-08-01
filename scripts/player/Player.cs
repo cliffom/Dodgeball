@@ -42,14 +42,15 @@ public partial class Player : Area2D
         );
 
         animatedSprite2D.Animation = updateAnimation(velocity);
+        animatedSprite2D.FlipH = velocity.X < 0;
     }
 
     private StringName updateAnimation(Vector2 velocity)
     {
         return velocity.X switch
         {
-            > 0 => "right",
-            < 0 => "left",
+            > 0 => "move",
+            < 0 => "move",
             _ => velocity.Y switch
             {
                 > 0 => "down",
