@@ -9,6 +9,7 @@ public partial class Player : Area2D
     public delegate void HitEventHandler();
 
     public Vector2 ScreenSize; // Size of the game window.
+    public CollisionShape2D CollisionShape;
 
     /**************************************************************************
     *** Functions
@@ -18,6 +19,8 @@ public partial class Player : Area2D
     public override void _Ready()
     {
         ScreenSize = GetViewportRect().Size;
+        CollisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
+
         Hide();
     }
 
@@ -53,7 +56,7 @@ public partial class Player : Area2D
     {
         Position = position;
         Show();
-        GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
+        CollisionShape.Disabled = false;
     }
 
     private void OnBodyEntered(PhysicsBody2D body)
@@ -61,7 +64,7 @@ public partial class Player : Area2D
         Hide(); // Player disappears after being hit.
         EmitSignal(SignalName.Hit);
         // Must be deferred as we can't change physics properties on a physics callback.
-        GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+        CollisionShape.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
     }
 
     private StringName updateAnimation(Vector2 velocity)

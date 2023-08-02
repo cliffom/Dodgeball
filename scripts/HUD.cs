@@ -3,46 +3,57 @@ using System;
 
 public partial class HUD : CanvasLayer
 {
+    public Label Message, Score;
+    public Timer MessageTimer;
+    public Button StartButton;
+
     [Signal]
     public delegate void StartGameEventHandler();
 
+    public override void _Ready()
+    {
+        base._Ready();
+
+        Message = GetNode<Label>("Message");
+        Score = GetNode<Label>("ScoreLabel");
+        MessageTimer = GetNode<Timer>("MessageTimer");
+        StartButton = GetNode<Button>("StartButton");
+    }
+
     public void ShowMessage(string text)
     {
-        var message = GetNode<Label>("Message");
-        message.Text = text;
-        message.Show();
+        Message.Text = text;
+        Message.Show();
 
-        GetNode<Timer>("MessageTimer").Start();
+        MessageTimer.Start();
     }
 
     async public void ShowGameOver()
     {
         ShowMessage("Game Over");
 
-        var messageTimer = GetNode<Timer>("MessageTimer");
-        await ToSignal(messageTimer, Timer.SignalName.Timeout);
+        await ToSignal(MessageTimer, Timer.SignalName.Timeout);
 
-        var message = GetNode<Label>("Message");
-        message.Text = "Dodgeball";
-        message.Show();
+        Message.Text = "Dodgeball";
+        Message.Show();
 
         await ToSignal(GetTree().CreateTimer(1.0), SceneTreeTimer.SignalName.Timeout);
-        GetNode<Button>("StartButton").Show();
+        StartButton.Show();
     }
 
-    public void UpdateScore(int score)
+    public void UpdateScore(int s)
     {
-        GetNode<Label>("ScoreLabel").Text = score.ToString();
+        Score.Text = s.ToString();
     }
 
     private void OnStartButtonPressed()
     {
-        GetNode<Button>("StartButton").Hide();
+        StartButton.Hide();
         EmitSignal(SignalName.StartGame);
     }
 
     private void OnMessageTimerTimeout()
     {
-        GetNode<Label>("Message").Hide();
+        Message.Hide();
     }
 }
