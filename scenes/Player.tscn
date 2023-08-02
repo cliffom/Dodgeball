@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://dy1b4vp7ii743"]
 
-[ext_resource type="Script" path="res://scripts/player/Player.cs" id="1_1bsq3"]
+[ext_resource type="Script" path="res://scripts/Player.cs" id="1_1bsq3"]
 [ext_resource type="Texture2D" uid="uid://1m25gnib48df" path="res://assets/ball/ball-down.png" id="1_ctk1x"]
 [ext_resource type="Texture2D" uid="uid://bcgiiqsggew01" path="res://assets/ball/bally-sprite-sheet.png" id="3_xqrnl"]
 [ext_resource type="Texture2D" uid="uid://bhtketnnaam2y" path="res://assets/ball/ball-move.png" id="4_rmlsv"]
