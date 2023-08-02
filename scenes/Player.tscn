@@ -92,6 +92,8 @@ radius = 33.36
 
 [node name="Player" type="Area2D"]
 scale = Vector2(0.75, 0.75)
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_1bsq3")
 metadata/_edit_group_ = true
 
